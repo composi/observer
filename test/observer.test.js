@@ -25,6 +25,14 @@ test('The observer watcher should have updated the value of observerDataTest.', 
   expect(observerDataTest).toBe('This is the dispatched data')
 })
 
+test('Should be able to attach more than one watcher to the same event.', function() {
+  expect(observer.events['event-test'].length).toBe(1)
+  observer.watch('event-test', () => {
+    return;
+  })
+  expect(observer.events['event-test'].length).toBe(2)
+})
+
 test('Should be able to dispatch an event without data.', function() {
   const observer = new Observer()
   let eventFired = false

@@ -13,11 +13,14 @@ export class Observer {
    * Method to subscribe to a publishing event.
    * @param {string} event
    * @param {Function} callback
-   * @return {Object.<string, any>} events
+   * @return {void} undefined
    */
   watch(event, callback) {
-    this.events[event] = []
-    return this.events[event].push(callback)
+    if (this.events.hasOwnProperty(event)) {
+      this.events[event].push(callback)
+    } else {
+      this.events[event] = [callback]
+    }
   }
 
   /**
