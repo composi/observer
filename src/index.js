@@ -1,5 +1,5 @@
 /**
- * Observer class providing two methods: watch and dispatch.
+ * Observer class providing two methods: watch and send.
  * It also exposes a method for setting state: `setState`.
  * `setState` works just like the same method on Composi class components.
  * When you use `setState` it sends a message to an instance of DataStoreComponent to update itself.
@@ -29,8 +29,8 @@ export class Observer {
    * @param {any} [data]
    * @return {any[]} events
    */
-  dispatch(event, data) {
-    // There's no event to dispatch to, so bail out:
+  send(event, data) {
+    // There's no event to send to, so bail out:
     if (!this.events.hasOwnProperty(event)) {
       return []
     }

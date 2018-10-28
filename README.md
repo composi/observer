@@ -1,5 +1,5 @@
 # @composi/observer
-A class to watch and dispatch custom events.
+A class to watch and send custom events.
 
 ## Install
 
@@ -25,7 +25,7 @@ const observer = new Observer()
 
 ## Create a Watcher
 
-To use an observer you need to tell it to watch for an event. You do this by passing it the event and a callback to the observer's `watch` method. By default the callback with get passed a parameter holding any data that was passed when the event is dispatched. 
+To use an observer you need to tell it to watch for an event. You do this by passing it the event and a callback to the observer's `watch` method. By default the callback with get passed a parameter holding any data that was passed when the event is sent. 
 
 ```javascript
 import { Observer } from '@composi/observer'
@@ -38,7 +38,7 @@ observer.watch('some-event' data => {
 
 ### Event with Multiple Watchers
 
-You can create multiple watchers for the same event, but with different callbacks. In that case, when the event is dispatch, all the callbacks will fire. You might do this when you want multiple components to respond to the same event.
+You can create multiple watchers for the same event, but with different callbacks. In that case, when the event is send, all the callbacks will fire. You might do this when you want multiple components to respond to the same event.
 
 ```javascript
 import { Observer } from '@composi/observer'
@@ -70,9 +70,9 @@ observer.watch('some-event' () => {
 
 Note: events are custom, so you can namespace them if you need to.
 
-## Dispatch an Event
+## Send an Event
 
-After setting up a watcher for an event, you need to dispatch the event to make the watcher react. You do this with the observer's `watch` method. This takes two arguments: the event to dispatch and any optional data you want to send with the event.
+After setting up a watcher for an event, you need to send the event to make the watcher react. You do this with the observer's `watch` method. This takes two arguments: the event to send and any optional data you want to send with the event.
 
 ```javascript
 import { Observer } from '@composi/observer'
@@ -83,14 +83,14 @@ observer.watch('some-event' data => {
 })
 
 // Sometime later:
-observer.dispatch('some-event', 'We are firing "some-event" now!')
+observer.send('some-event', 'We are firing "some-event" now!')
 // Console will log:
 // Received this data: We are firing "some-event" now!
 ```
 
-### Dispatch Event without Data
+### Send Event without Data
 
-As we mentioned earlier, you do not have to pass data with a dispatched event. Here we take the example of a watcher without data and dispatch to it:
+As we mentioned earlier, you do not have to pass data with a sent event. Here we take the example of a watcher without data and send to it:
 
 
 ```javascript
@@ -101,7 +101,7 @@ observer.watch('some-event' () => {
   console.log(`The event did fire!`)
 })
 
-// Sometime later dispatch event without data:
+// Sometime later send event without data:
 observer.distach('some-event')
 // Console will log:
 // The event did fire!
@@ -122,14 +122,14 @@ observer.watch('some-event' data => {
 })
 
 // Sometime later:
-observer.dispatch('some-event', 'We are firing "some-event" now!')
+observer.send('some-event', 'We are firing "some-event" now!')
 // Console will log:
 // Received this data: We are firing "some-event" now!
 
 // Sometime later we unwatch the event:
 observer.unwatch('some-event')
-// Now dispatching to that even will do nothing:
-observer.dispatch('some-event', 'Dispatching to unwatched event.')
+// Now sending to that even will do nothing:
+observer.send('some-event', 'Sending to unwatched event.')
 ```
 
 Note: if you have multiple watchers for an event and you unwatch it, this disables all watchers for that event.
