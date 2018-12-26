@@ -32,7 +32,7 @@ export class Observer {
   send(event, data) {
     // There's no event to send to, so bail out:
     if (!this.events.hasOwnProperty(event)) {
-      return []
+      return
     }
     return this.events[event].map(callback => callback(data))
   }
@@ -43,6 +43,6 @@ export class Observer {
    * @return {void} undefined
    */
   unwatch(event) {
-    this.events[event]
+    delete this.events[event]
   }
 }

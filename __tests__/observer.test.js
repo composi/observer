@@ -60,12 +60,14 @@ test('After unwatching a watched event, the event should not fire.', function() 
   observer.watch('special_event', function (data) {
     result = data
   })
+  expect(observer.events).toBeTruthy()
   observer.send('special_event', 'first fire.')
   expect(result).toEqual('first fire.')
   observer.unwatch('special_event')
   setTimeout(() => {
     observer.send('special_event', 'second fire.')
     // Because event is unwatched, result is unchanged:
+    expect(observer.events).toBeUndefined() 
     expect(result).toEqual('first fire.')
   }, 500)
 })

@@ -1,7 +1,7 @@
 {
   "name": "@composi/observer",
   "description": "A class to watch and dispatch custom events.",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "main": "src/index.js",
   "scripts": {
     "checkjs": "tsc --allowJs --checkJs --noEmit --moduleResolution node --target ES6 src/*.js",
