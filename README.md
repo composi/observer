@@ -25,13 +25,13 @@ const observer = new Observer()
 
 ## Create a Watcher
 
-To use an observer you need to tell it to watch for an event. You do this by passing it the event and a callback to the observer's `watch` method. By default the callback with get passed a parameter holding any data that was passed when the event is sent. 
+To use an observer you need to tell it to watch for an event. You do this by passing it the event and a callback to the observer's `watch` method. By default the callback with get passed a parameter holding any data that was passed when the event is sent.
 
 ```javascript
 import { Observer } from '@composi/observer'
 
 const observer = new Observer()
-observer.watch('some-event' data => {
+observer.watch('some-event', data => {
   console.log(`Received this data: ${data}`)
 })
 ```
@@ -45,12 +45,12 @@ import { Observer } from '@composi/observer'
 
 const observer = new Observer()
 // First watcher for 'some-event':
-observer.watch('some-event' data => {
+observer.watch('some-event', data => {
   console.log(`First watcher received this data: ${data}`)
 })
 
 // Second watcher for 'some-event':
-observer.watch('some-event' data => {
+observer.watch('some-event', data => {
   console.log(`Second watcher received this data: ${data}`)
 })
 ```
@@ -63,7 +63,7 @@ You do not have to use data passed in a event. In fact, you can set up a watcher
 import { Observer } from '@composi/observer'
 
 const observer = new Observer()
-observer.watch('some-event' () => {
+observer.watch('some-event', () => {
   console.log(`The event did fire!`)
 })
 ```
@@ -78,7 +78,7 @@ After setting up a watcher for an event, you need to send the event to make the 
 import { Observer } from '@composi/observer'
 
 const observer = new Observer()
-observer.watch('some-event' data => {
+observer.watch('some-event', data => {
   console.log(`Received this data: ${data}`)
 })
 
@@ -102,7 +102,7 @@ observer.watch('some-event' () => {
 })
 
 // Sometime later send event without data:
-observer.distach('some-event')
+observer.send('some-event')
 // Console will log:
 // The event did fire!
 ```
@@ -117,7 +117,7 @@ In this example we set up an observer and later unwatch the event:
 import { Observer } from '@composi/observer'
 
 const observer = new Observer()
-observer.watch('some-event' data => {
+observer.watch('some-event', data => {
   console.log(`Received this data: ${data}`)
 })
 
